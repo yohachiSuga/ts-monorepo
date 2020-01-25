@@ -19,19 +19,20 @@ var __importStar = (this && this.__importStar) || function (mod) {
     result["default"] = mod;
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __importStar(require("react"));
+var moment_1 = __importDefault(require("moment"));
 var Sample = /** @class */ (function (_super) {
     __extends(Sample, _super);
     function Sample(props) {
         return _super.call(this, props) || this;
     }
     Sample.prototype.render = function () {
-        return (React.createElement("div", null, "test"));
+        return (React.createElement("div", null, moment_1.default().format()));
     };
     return Sample;
 }(React.Component));
 exports.default = Sample;
-// export const HelloWorld = ():string =>{
-//     return "HelloWorld"
-// }

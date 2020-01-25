@@ -6,5 +6,10 @@
   "author": "sakira <yohachi.suga@gmail.com>",
   "license": "MIT",
   "private": true,
-  "workspaces":["packages/*"]
+  "workspaces":["packages/*"],
+  "scripts": {
+    "common-build":"yarn workspace common tsc",
+    "front-start":"yarn common-build && yarn workspace front start",
+    "front-build":"yarn common-build && yarn workspace front build && serve -s packages/front/build"
+  }
 }
