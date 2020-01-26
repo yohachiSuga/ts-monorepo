@@ -1,0 +1,19 @@
+{
+    // TypeScriptでもeslintが動くように
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact"
+    ],
+    // yarnを使う
+    "eslint.packageManager": "yarn",
+    // workspaceを指定する。CWDも変えたい。
+    "eslint.workingDirectories": [
+      { "directory": "./packages/front", "changeProcessCWD": true },
+      { "directory": "./packages/common", "changeProcessCWD": true },
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    }
+  }
