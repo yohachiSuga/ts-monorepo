@@ -3,7 +3,12 @@
   "compilerOptions": {
     "jsx": "react",
     "allowJs": false,
-    "noEmit": false
+    "noEmit": false,
+    // typescript finds *.d.ts file 
+    "declaration": true,
+    // for vscode 
+    "declarationMap": true,
+    "outDir": "./build"
   },
   "exclude": ["node_modules"],
   "include": ["src"]

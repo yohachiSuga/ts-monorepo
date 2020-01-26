@@ -1,0 +1,10 @@
+{
+    //create react appはビルド時にtsconfigのpath設定を消してしまう
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@common/*":["../common/build/*"]
+        }
+    }
+}
