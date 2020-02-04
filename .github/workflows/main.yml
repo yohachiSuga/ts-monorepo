@@ -18,4 +18,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: pwd
     - run: yarn install
-    - run: cd ./packages/front && yarn build
+    - run: yarn common-build && yarn workspace front build 
