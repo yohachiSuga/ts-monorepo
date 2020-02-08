@@ -15,10 +15,10 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: pwd
-    - run: yarn install
-    - run: yarn common-build
-    - run: yarn workspace front build 
+#     - run: pwd
+#     - run: yarn install
+#     - run: yarn common-build
+#     - run: yarn workspace front build 
     - name: create jobs
       if: always()
       run: echo ${{ job.status }} > status.txt
@@ -34,7 +34,7 @@ jobs:
     needs: [build]
     steps:
     - name: download artifacts
-      uses: actions/donwload-artifact@v1
+      uses: actions/download-artifact@v1
       with:
         name: status_build_job
     - name: set status to parameters
@@ -45,3 +45,4 @@ jobs:
       if: always()
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_MESSAGE: ${{ steps.set_outputs.status_build_job}}
