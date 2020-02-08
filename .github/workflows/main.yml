@@ -30,7 +30,7 @@ jobs:
         name: status_build_job
         path: status.txt
   notify:
-    runs-on: ${{ ubuntu-latest }}
+    runs-on: ubuntu-latest
     needs: [build]
     steps:
     - name: download artifacts
