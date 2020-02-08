@@ -21,7 +21,7 @@ jobs:
 #     - run: yarn workspace front build 
     - name: create jobs
       if: always()
-      run: echo " $${{ matrix.os }}=${{ job.status }}" >> status.txt
+      run: echo " ${{ runner.os }}=${{ job.status }}" >> status.txt
       shell: bash
     - name: upload result
       if: always()
