@@ -41,10 +41,10 @@ jobs:
       id: set_outputs
       run: echo "::set-output name=status_build_job::$(<status_build_job/status.txt)"
     - name: echo
-      run: echo "status = ${{ steps.set_outputs.status_build_job }}"
+      run: echo "status = ${{ steps.set_outputs.outputs.status_build_job }}"
     - name: Slack Notificationstatus_build_job/
       uses: rtCamp/action-slack-notify@v2.0.0
       if: always()
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_MESSAGE: "${{ steps.set_outputs.status_build_job}}"
+        SLACK_MESSAGE: "${{ steps.set_outputs.outputs.status_build_job}}"
