@@ -45,11 +45,11 @@ jobs:
         name: status_build_job_macOS
     - name: set status to parameters
       id: set_outputs
-      run: 
+      run: |
         echo "::set-output name=status_build_job_Windows::$(<status_build_job_Windows/status.txt)"
         echo "::set-output name=status_build_job_Mac::$(<status_build_job_macOS/status.txt)"
     - name: echo
-      run: 
+      run: |
         echo "status = ${{ steps.set_outputs.outputs.status_build_job_Windows }}"
         echo "status = ${{ steps.set_outputs.outputs.status_build_job_Mac }}"
     - name: Slack Notificationstatus_build_job/
