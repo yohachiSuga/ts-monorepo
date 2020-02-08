@@ -20,3 +20,8 @@ jobs:
     - run: yarn install
     - run: yarn common-build
     - run: yarn workspace front build 
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@v2.0.0
+      if: always()
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
