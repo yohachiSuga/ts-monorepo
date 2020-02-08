@@ -21,14 +21,14 @@ jobs:
 #     - run: yarn workspace front build 
     - name: create jobs
       if: always()
-      run: echo " ${{ runner.os }}=${{ job.status }}" >> status-${{ runner.os }}.txt
+      run: echo " ${{ runner.os }}=${{ job.status }}" >> status.txt
       shell: bash
     - name: upload result
       if: always()
       uses: actions/upload-artifact@v1
       with:
         name: status_build_job_${{ runner.os }}
-        path: status-${{ runner.os }}.txt
+        path: status.txt
   notify:
     runs-on: ubuntu-latest
     needs: [build]
@@ -39,12 +39,16 @@ jobs:
         name: status_build_job
     - name: set status to parameters
       id: set_outputs
-      run: echo "::set-output name=status_build_job::$(<status_build_job/status.txt)"
+      run: 
+        echo "::set-output name=status_build_job_Windows::$(<status_build_job_Windows/status.txt)"
+        echo "::set-output name=status_build_job_Mac::$(<status_build_job_macOS/status.txt)"
     - name: echo
-      run: echo "status = ${{ steps.set_outputs.outputs.status_build_job }}"
+      run: 
+        echo "status = ${{ steps.set_outputs.outputs.status_build_job_Windows }}"
+        echo "status = ${{ steps.set_outputs.outputs.status_build_job_Mac }}"
     - name: Slack Notificationstatus_build_job/
       uses: rtCamp/action-slack-notify@v2.0.0
       if: always()
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        SLACK_MESSAGE: "${{ steps.set_outputs.outputs.status_build_job}}"
+        SLACK_MESSAGE: "${{ steps.set_outputs.outputs.status_build_job_Windows }} \r\n ${{ steps.set_outputs.outputs.status_build_job_Mac }}"
