@@ -54,7 +54,7 @@ jobs:
         echo "status = ${{ steps.set_outputs.outputs.status_build_job_macOS }}"
     - name: Slack Notificationstatus_build_job/
       uses: rtCamp/action-slack-notify@v2.0.0
-      if: always()
+      if: success() || cancelled()
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_MESSAGE: "${{ steps.set_outputs.outputs.status_build_job_Windows }} \r\n ${{ steps.set_outputs.outputs.status_build_job_macOS }}"
